@@ -48,7 +48,7 @@ function parseScheduleJSON(json){
     txt += "<th>Click to go to boxscore</th><th>Start Time</th><th>Location</th><th>Home</th><th>Home Score</th><th>Away Score</th><th>Away</th><th>Status</th>";
     for (x in g) {
 		console.log('game_'+x);
-        txt += "<tr><td> <a href = \"C:\\Users\\j8lu\\Downloads\\NBA-master\\boxscore.html\">" + x + "</a>"
+        txt += "<tr><td> <a href = \"C:\\Users\\Kevin\\Downloads\\NBA-master\\boxscore.html\">" + x + "</a>"
 			+ "</td><td>" + parseJsonDate(g[x].scheduled) 
             + "</td><td>" + g[x].venue.name 
             + "</td><td>" + g[x].home.name 
@@ -100,8 +100,33 @@ scheduleURL = 'https://api.sportradar.us/nba/' + access_level + '/'+ version + '
 var newHeader = "<h1 id = \"header\">Schedule for " + month + "/" + day + "/" + year + "</h1>";
 document.getElementById("header").innerHTML = newHeader;
 
-//Make the first HTTP call
-http.open("GET", scheduleURL, true);
-http.send();
+////Make the first HTTP call
+//http.open("GET", scheduleURL, true);
+//http.send();
+http = createCORSRequest("GET", scheduleURL);
     
+}
+
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+
+    // Check if the XMLHttpRequest object has a "withCredentials" property.
+    // "withCredentials" only exists on XMLHTTPRequest2 objects.
+    xhr.open(method, url, true);
+
+  } else if (typeof XDomainRequest != "undefined") {
+
+    // Otherwise, check if XDomainRequest.
+    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+
+  } else {
+
+    // Otherwise, CORS is not supported by the browser.
+    xhr = null;
+
+  }
+  return xhr;
 }
