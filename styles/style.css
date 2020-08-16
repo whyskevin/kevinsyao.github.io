@@ -1,6 +1,37 @@
+.bottom-footer
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    font-family: "Lucida Console", Courier, monospace;
+}
+
+.bottom-footer.ul
+{
+    display: table;
+}
+
+footer
+{
+    margin: auto;
+    text-align: center;
+    font-family: "Lucida Console", Courier, monospace;
+}
+
+.head
+{
+    margin: auto;    
+}
+
 .navigation-bar
 {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.top-header
+{
+    text-align: center;
+    font-family: "Lucida Console", Courier, monospace;
 }
